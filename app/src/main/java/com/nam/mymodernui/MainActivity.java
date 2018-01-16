@@ -1,5 +1,6 @@
 package com.nam.mymodernui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -40,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStartTrackingTouch(SeekBar seekBar)
             {
-                Log.i(LOGTAG, "On Start");
+               // Log.i(LOGTAG, "On Start");
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar)
             {
-                Log.i(LOGTAG, "On Stop");
+                //Log.i(LOGTAG, "On Stop");
             }
         });
 
@@ -87,23 +88,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void ChangeColors(int progress)
     {
-
-
-        //int color = 0xFFFFFF;
-
-        int color;
-
         Random r = new Random();
 
-        color = r.nextInt(0xFFFFFF);
-
-        Log.i(LOGTAG, "Change colors " + color);
-
-        mTextView00.setBackgroundColor(color);
-/*        mTextView01 = findViewById(R.id.textView01);
-        mTextView10 = findViewById(R.id.textView10);
-        mTextView11 = findViewById(R.id.textView11);
-        mTextView12 = findViewById(R.id.textView12);*/
+        mTextView00.setBackgroundColor(Color.argb(255, r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+        mTextView01.setBackgroundColor(Color.argb(255, r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+        mTextView10.setBackgroundColor(Color.argb(255, r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+        mTextView11.setBackgroundColor(Color.argb(255, r.nextInt(256), r.nextInt(256), r.nextInt(256)));
+        mTextView12.setBackgroundColor(Color.argb(255, r.nextInt(256), r.nextInt(256), r.nextInt(256)));
 
     }
 
