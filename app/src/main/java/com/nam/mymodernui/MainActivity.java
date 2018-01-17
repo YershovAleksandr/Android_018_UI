@@ -1,8 +1,9 @@
 package com.nam.mymodernui;
 
-import android.graphics.Color;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -96,6 +97,34 @@ public class MainActivity extends AppCompatActivity {
     private void GoInfo()
     {
         Log.i(LOGTAG, "Go to Info");
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+
+        builder.setMessage("Go to MOVA???")
+                .setPositiveButton("Visit MOVA", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.i(LOGTAG, "GO TO MOVA WWW");
+
+                    }
+                })
+                .setNegativeButton("Not Now", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.i(LOGTAG, "NOT NOW");
+
+                    }
+                });
+
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+
+
+
+
+
     }
 
     private void ChangeColors(int progress)
