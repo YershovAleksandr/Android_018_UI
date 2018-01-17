@@ -1,9 +1,10 @@
 package com.nam.mymodernui;
 
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -13,7 +14,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyDialog.MyDialogListener {
 
     private String LOGTAG = "X42";
 
@@ -96,35 +97,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void GoInfo()
     {
-        Log.i(LOGTAG, "Go to Info");
+        DialogFragment dialog = new MyDialog();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
-
-        builder.setMessage("Go to MOVA???")
-                .setPositiveButton("Visit MOVA", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.i(LOGTAG, "GO TO MOVA WWW");
-
-                    }
-                })
-                .setNegativeButton("Not Now", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.i(LOGTAG, "NOT NOW");
-
-                    }
-                });
-
-
-        AlertDialog dialog = builder.create();
-
-        dialog.show();
-
-
-
-
-
+        dialog.show(getSupportFragmentManager(), "My FTW");
     }
 
     private void ChangeColors(int progress)
@@ -166,4 +141,21 @@ public class MainActivity extends AppCompatActivity {
         //return Color.argb(255.f,(float)red * p, (float)green * p, (float)blue * p);
     }
 
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog)
+    {
+        Log.i(LOGTAG, "Positive");
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.moma.org"));
+
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog)
+    {
+        Log.i(LOGTAG, "Negative");
+
+    }
 }
