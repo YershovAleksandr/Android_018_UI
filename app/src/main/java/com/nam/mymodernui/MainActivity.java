@@ -134,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         ret = 0xFFFFFFFF;
 
         Log.i(LOGTAG, "Color rr " + ret);
