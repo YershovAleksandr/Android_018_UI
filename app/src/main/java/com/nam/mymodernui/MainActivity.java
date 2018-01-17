@@ -100,28 +100,39 @@ public class MainActivity extends AppCompatActivity {
 
     private void ChangeColors(int progress)
     {
-        mTextView00.setBackgroundColor(HackColor(progress, c00));
-        mTextView01.setBackgroundColor(HackColor(progress, c01));
-        mTextView10.setBackgroundColor(HackColor(progress, c10));
-        mTextView11.setBackgroundColor(HackColor(progress, c11));
-        mTextView12.setBackgroundColor(HackColor(progress, c12));
+        //c00 = HackColor(progress, c00);
+      //  mTextView00.setBackgroundColor(c00);
+        //c01 = HackColor(progress, c01);
+       // mTextView01.setBackgroundColor(c01);
+       // mTextView10.setBackgroundColor(HackColor(progress, c10));
+        //mTextView11.setBackgroundColor(HackColor(progress, c11));
+        mTextView12.setBackgroundColor((int)HackColor(progress, c12));
     }
 
-    private int HackColor(int progress, int color)
+    private long HackColor(int progress, int color)
     {
 
-        Log.i(LOGTAG, "Progress " + progress);
+        //Log.i(LOGTAG, "Progress " + progress);
 
         int red = (color >> 16) & 0xFF;
         int green = (color >> 8) & 0xFF;
         int blue = (color >> 0) & 0xFF;
 
-        red = red + (0xFF - red) * progress / 100;
-        green = green + (0xFF - green) * progress / 100;
-        blue = blue + (0xFF - blue) * progress / 100;
+        Log.i(LOGTAG, "R " + red + " G " + green + " B " + blue);
 
+        red = (red + (0xFF - red) * progress / 100) & 0xFF;
+        green = (green + (0xFF - green) * progress / 100) & 0xFF;
+        blue = (blue + (0xFF - blue) * progress / 100) & 0xFF;
 
-        int ret = 0xFF000000 + red * 0xFFFF + green * 0xFF + blue;
+        Log.i(LOGTAG, "R " + red + " G " + green + " B " + blue);
+
+        long ret = 0;
+        ret = 0xFF000000;
+        ret = ret + red * 0xFFFF;
+        ret = ret + green * 0xFF;
+        ret = ret + blue;
+
+        ret = 0xFFFFFFFF;
 
         Log.i(LOGTAG, "Color rr " + ret);
         return ret;
